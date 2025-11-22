@@ -10,7 +10,7 @@ public class soma_parallelo {
         ExecutorService pool = Executors.newFixedThreadPool(numThreads);
         List<Future<Long>> futures = new ArrayList<>();
 
-        int chunkSize = (n + numThreads - 1) / numThreads; // ceil division
+        int chunkSize = (n + numThreads - 1) / numThreads; // divisão com arredondamento pra cima
         for (int t = 0; t < numThreads; t++) {
             final int start = t * chunkSize;
             final int end = Math.min(start + chunkSize, n);
