@@ -18,4 +18,7 @@ SILVEIRA, S. R.; et al. Paradigmas de programação: Uma introdução. Capítulo
 
 DEITEL, H.; DEITEL, P. Java - How to Program (referenciado no capítulo). (usado como base conceitual).
 
-Códigos gerados com auxílio de IA (ChatGPT) e adaptados manualmente.
+Códigos gerados com auxílio de IA (ChatGPT) e adaptados manualmente. 
+
+O atomicInteger serve:
+ Para não deixar as trheds se sobrescreverem, e trabalhar uma de cada vez.
