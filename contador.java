@@ -50,17 +50,17 @@ public class contador {
         // Unsafe
         UnsafeCounter uc = new UnsafeCounter();
         runTest(() -> uc.increment(), numThreads, incrementsPerThread);
-        System.out.println("Contador inseguro: esperado =" + (numThreads * incrementsPerThread) +       "Obtido=" + uc.get());
+        System.out.println("Contador inseguro: Esperado = " + (numThreads * incrementsPerThread) +  " Obtido = " + uc.get());
 
         // Safe sync
         SafeCounterSync scs = new SafeCounterSync();
         runTest(() -> scs.increment(), numThreads, incrementsPerThread);
-        System.out.println("Contador seguro: esperado =" + (numThreads * incrementsPerThread) + " Obtido=" + scs.get());
+        System.out.println("Contador seguro: Esperado = " + (numThreads * incrementsPerThread) + " Obtido = " + scs.get());
 
         // Safe atomic
         SafeCounterAtomic sca = new SafeCounterAtomic();
         runTest(() -> sca.increment(), numThreads, incrementsPerThread);
-        System.out.println("Contador seguro (com AtomicInteger): esperado=" + (numThreads * incrementsPerThread) + " Obtido=" + sca.get());
+        System.out.println("Contador seguro (com AtomicInteger): Esperado = " + (numThreads * incrementsPerThread) + " Obtido = " + sca.get());
     }
 }
 
