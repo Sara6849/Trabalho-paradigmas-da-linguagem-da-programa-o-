@@ -1,0 +1,76 @@
+versão insegura
+
+CLASSE UnsafeCounter:
+    VAR count ← 0
+
+    MÉTODO incrementar():
+        count ← count + 1
+
+    MÉTODO obter():
+        RETORNAR count
+
+
+versão segura 
+
+CLASSE SafeCounterSync:
+    VAR count ← 0
+
+    MÉTODO sincronizado incrementar():
+        count ← count + 1
+
+    MÉTODO sincronizado obter():
+        RETORNAR count
+
+Versão segura com AtomicInteger 
+
+
+CLASSE SafeCounterAtomic:
+    VAR count ← novo AtomicInteger(0)
+
+    MÉTODO incrementar():
+        count.incrementarEObter()
+
+    MÉTODO obter():
+        RETORNAR count.obter()
+
+
+Função geral para executar o teste
+
+FUNÇÃO executarTeste(contador, numThreads, repeticoes):
+
+    criar vetor de threads com tamanho numThreads
+
+    PARA t de 0 até numThreads - 1:
+        
+        threads[t] ← nova Thread executando:
+            PARA i de 1 até repeticoes:
+                contador.incrementar()
+
+        iniciar threads[t]
+
+    PARA cada thread no vetor:
+        esperar terminar (join)
+
+FUNÇÃO Principal 
+
+FUNÇÃO main():
+
+    numThreads ← 8
+    repeticoes ← 100000
+
+    // Teste inseguro
+    uc ← novo UnsafeCounter
+    executarTeste(uc, numThreads, repeticoes)
+    imprimir "Esperado = numThreads * repeticoes"
+    imprimir "Obtido = uc.obter()"
+
+    // Teste seguro com synchronized
+    scs ← novo SafeCounterSync
+    executarTeste(scs, numThreads, repeticoes)
+    imprimir valores
+
+    // Teste seguro com atomic
+    sca ← novo SafeCounterAtomic
+    executarTeste(sca, numThreads, repeticoes)
+    imprimir valores
+

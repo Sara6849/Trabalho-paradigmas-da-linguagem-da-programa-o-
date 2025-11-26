@@ -1,4 +1,6 @@
 // CounterDemo.java
+//Nomes: Laura Venancio, Maria Julia, Sara Ramos. 
+// data: 20/11/2025
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class contador {

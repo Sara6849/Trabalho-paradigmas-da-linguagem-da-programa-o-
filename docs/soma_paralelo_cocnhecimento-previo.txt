@@ -1,0 +1,40 @@
+FUNÇÃO somaParalela(A, numThreads):
+
+    SE A for nulo:
+        RETORNAR 0
+
+    SE numThreads <= 0:
+        numThreads ← 1
+
+    n ← tamanho de A
+
+    criar pool de threads com numThreads trabalhadores
+    criar lista vazia chamada resultados
+
+    calcular chunkSize ← teto( n / numThreads )
+
+    PARA cada t de 0 até numThreads - 1:
+        
+        start ← t * chunkSize
+        end ← mínimo(start + chunkSize, n)
+
+        SE start >= end:
+            sair do loop
+
+        definir TAREFA:
+            localSum ← 0
+            PARA i de start até end - 1:
+                localSum ← localSum + A[i]
+            RETORNAR localSum
+
+        enviar TAREFA ao pool e guardar o futuro na lista resultados
+
+    total ← 0
+
+    PARA cada futuro em resultados:
+        somaParcial ← pegar o valor do futuro (bloqueante)
+        total ← total + somaParcial
+
+    encerrar o pool
+
+    RETORNAR total
