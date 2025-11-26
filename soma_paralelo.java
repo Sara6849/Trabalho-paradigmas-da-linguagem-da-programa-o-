@@ -4,7 +4,7 @@
 import java.util.concurrent.*;
 import java.util.*;
 
-public class soma_parallelo {
+public class soma_paralelo {
 
     public static long somaParalela(int[] A, int numThreads) throws InterruptedException, ExecutionException {
         if (A == null) return 0L;
