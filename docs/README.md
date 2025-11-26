@@ -1,5 +1,9 @@
 # Trabalho-paradigmas-da-linguagem-da-programa-o-
 Resolução dos problemas:  Soma de vetores com threads. Contador sincronizado. 
+## Documentação
+[Abrir Relatorio da Sara em PDF](Relatório-java.pdf)
+
+
 
 Usou-se os pronts de comando no chat GPT 
 
