@@ -13,11 +13,11 @@ public class soma_paralelo {
         ExecutorService pool = Executors.newFixedThreadPool(numThreads);
         List<Future<Long>> futures = new ArrayList<>();
 
-        int chunkSize = (n + numThreads - 1) / numThreads; // divisão com arredondamento pra cima
+        int chunkSize = (n + numThreads - 1) / numThreads; 
         for (int t = 0; t < numThreads; t++) {
             final int start = t * chunkSize;
             final int end = Math.min(start + chunkSize, n);
-            if (start >= end) break; // nada para esse thread
+            if (start >= end) break; 
             Callable<Long> task = () -> {
                 long localSum = 0L;
                 for (int i = start; i < end; i++) {
@@ -37,7 +37,6 @@ public class soma_paralelo {
         return total;
     }
 
-    // método main para testar
     public static void main(String[] args) throws Exception {
         int n = 10_000_000;
         int[] A = new int[n];
@@ -48,8 +47,6 @@ public class soma_paralelo {
         long start = System.currentTimeMillis();
         long sum = somaParalela(A, threads);
         long elapsed = System.currentTimeMillis() - start;
-
-        // validação (soma sequencial)
         long seq = 0L;
         for (int v: A) seq += v;
 

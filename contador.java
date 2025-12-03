@@ -5,16 +5,16 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class contador {
 
-    // Versão insegura (race)
+    
     static class UnsafeCounter {
         public int count = 0;
         public void increment() {
-            count = count + 1; // não-atômico
+            count = count + 1; 
         }
         public int get() { return count; }
     }
 
-    // Versão segura 1: synchronized
+    
     static class SafeCounterSync {
         private int count = 0;
         public synchronized void increment() {
@@ -23,7 +23,7 @@ public class contador {
         public synchronized int get() { return count; }
     }
 
-    // Versão segura 2: AtomicInteger
+    
     static class SafeCounterAtomic {
         private AtomicInteger count = new AtomicInteger(0);
         public void increment() {
@@ -49,17 +49,17 @@ public class contador {
         int numThreads = 8;
         int incrementsPerThread = 100_000;
 
-        // Unsafe
+        
         UnsafeCounter uc = new UnsafeCounter();
         runTest(() -> uc.increment(), numThreads, incrementsPerThread);
         System.out.println("Contador inseguro: Esperado = " + (numThreads * incrementsPerThread) +  " Obtido = " + uc.get());
 
-        // Safe sync
+        
         SafeCounterSync scs = new SafeCounterSync();
         runTest(() -> scs.increment(), numThreads, incrementsPerThread);
         System.out.println("Contador seguro: Esperado = " + (numThreads * incrementsPerThread) + " Obtido = " + scs.get());
 
-        // Safe atomic
+        
         SafeCounterAtomic sca = new SafeCounterAtomic();
         runTest(() -> sca.increment(), numThreads, incrementsPerThread);
         System.out.println("Contador seguro (com AtomicInteger): Esperado = " + (numThreads * incrementsPerThread) + " Obtido = " + sca.get());
