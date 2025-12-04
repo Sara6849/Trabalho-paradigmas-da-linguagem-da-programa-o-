@@ -1,6 +1,5 @@
 // CounterDemo (versão simples com erros)
 // Nomes: Laura Venancio, Maria Julia, Sara Ramos.
-// Data: 20/11/2025
 
 import java.util.concurrent.atomic.AtomicInteger;
 import java.util.Random;
